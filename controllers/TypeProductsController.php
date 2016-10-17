@@ -15,4 +15,8 @@ class TypeProductsController extends CController
 
         return $actions;
     }
+
+
+
+    
 }
