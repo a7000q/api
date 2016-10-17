@@ -18,5 +18,5 @@ class TypeProductsController extends CController
 
 
 
-    
+
 }
