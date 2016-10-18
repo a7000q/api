@@ -3,7 +3,7 @@
 namespace app\models\transaction;
 
 use Yii;
-use app\models\Cards;
+use app\models\cards\Cards;
 
 /**
  * This is the model class for table "r_card_transactions".
