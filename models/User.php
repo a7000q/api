@@ -8,7 +8,7 @@ class User extends ActiveRecord  implements \yii\web\IdentityInterface
 {
     public static function tableName()
     {
-        return 'api_user';
+        return 'azs_users';
     }
 
     /**

@@ -18,28 +18,7 @@ class Terminal extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'api_terminal';
+        return 'terminals';
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function rules()
-    {
-        return [
-            [['name', 'imei'], 'string', 'max' => 255],
-        ];
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function attributeLabels()
-    {
-        return [
-            'id' => 'ID',
-            'name' => 'Name',
-            'imei' => 'Imei',
-        ];
-    }
 }
