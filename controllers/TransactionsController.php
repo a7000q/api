@@ -62,4 +62,17 @@ class TransactionsController extends CController
 
         return $transaction;
     }
+
+    public function actionDeleteTest()
+    {
+        $cards = ['1', '532', '483'];
+
+        $transactions = Transactions::find()->joinWith('cardTransaction')->where(['in', 'id_card', $cards])->all();
+
+        foreach ($transactions as $t)
+            $t->delete();
+
+        return "ok";
+
+    }
 }
