@@ -25,7 +25,6 @@ class PriceController extends CController
     public function behaviors()
     {
         $behaviors = parent::behaviors();
-        $behaviors['authenticator']['except'] = ['all'];
 
         return $behaviors;
 
@@ -36,9 +35,9 @@ class PriceController extends CController
         return AzsPrice::updatePrice(Yii::$app->user->identity->terminal->id_fuel_module, $id_product, $price);
     }
 
-    public function actionAll($id_terminal)
+    public function actionAll()
     {
-        $terminal = Terminal::findOne($id_terminal);
+        $terminal = Yii::$app->user->identity->terminal;
         if (!$terminal)
             return ['status' => 1401];
 
