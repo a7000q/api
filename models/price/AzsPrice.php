@@ -65,7 +65,7 @@ class AzsPrice extends \yii\db\ActiveRecord
 
         $id_type = $product->id_type;
 
-        $azs_price = static::findOne(['id_module' => $id_module, 'id_type' => $id_type]);
+        $azs_price = static::findOne(['id_module' => $id_module, 'id_type' => $id_type, 'id_product' => $id_product]);
 
         if ($azs_price)
         {
