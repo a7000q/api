@@ -5,6 +5,7 @@ namespace app\models\price;
 use Yii;
 use app\models\product\Products;
 use app\models\product\TypeProducts;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "azs_price".
@@ -17,9 +18,8 @@ use app\models\product\TypeProducts;
  */
 class AzsPrice extends \yii\db\ActiveRecord
 {
-    /**
-     * @inheritdoc
-     */
+    public $oldPrice = 0;
+
     public static function tableName()
     {
         return 'azs_price';
@@ -53,7 +53,7 @@ class AzsPrice extends \yii\db\ActiveRecord
 
     public function extraFields()
     {
-        return ['product', 'typeProduct'];
+        return ['product', 'typeProduct', 'oldPrice'];
     }
 
     static public function updatePrice($id_module, $id_product, $price)
@@ -69,6 +69,7 @@ class AzsPrice extends \yii\db\ActiveRecord
 
         if ($azs_price)
         {
+            $azs_price->oldPrice = $azs_price->price;
             $azs_price->price = $price;
             $azs_price->id_type = $id_type;
         }
@@ -81,8 +82,10 @@ class AzsPrice extends \yii\db\ActiveRecord
             $azs_price->price = $price;
         }
 
-        if ($azs_price->validate())
+        if ($azs_price->validate()) {
             $azs_price->save();
+            return $azs_price;
+        }
         else
             return ['status' => 1409];
     }
