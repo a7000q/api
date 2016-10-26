@@ -24,7 +24,7 @@ use app\models\Terminal;
 use app\models\PricesDiscounts;
 use app\models\product\TypeProducts;
 use app\models\price\AzsPrice;
-
+use yii\helpers\ArrayHelper;
 
 
 class Transactions extends \yii\db\ActiveRecord
@@ -396,7 +396,7 @@ class Transactions extends \yii\db\ActiveRecord
 
     public function extraFields()
     {
-        return ['cardNumber', 'typeProduct', 'cardName', 'lastTransactionVolume', 'partnerName'];
+        return ['cardNumber', 'typeProduct', 'cardName', 'lastTransactionVolume', 'partnerName', 'price'];
     }
 
     //Добавить транзакцию с проверкой на доступность заправки картой данного топлива
@@ -448,6 +448,11 @@ class Transactions extends \yii\db\ActiveRecord
     {
         if ($this->cardTransaction)
             return $this->cardTransaction->card->id_txt;
+    }
+
+    public function getPrice()
+    {
+        return ArrayHelper::getValue($this, "productTransaction.price");
     }
 
     public function getTypeProduct()
