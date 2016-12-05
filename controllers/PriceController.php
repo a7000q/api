@@ -46,7 +46,7 @@ class PriceController extends CController
         return new ActiveDataProvider(['query' => $AzsPrice]);
     }
 
-    public function actionDelete($id)
+    public function actionDeleted($id)
     {
         $terminal = Yii::$app->user->identity->terminal;
         $price = AzsPrice::findOne($id);
