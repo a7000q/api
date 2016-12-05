@@ -17,7 +17,7 @@ class PriceController extends CController
     {
         $actions = parent::actions();
 
-        unset($actions['delete'], $actions['index'], $actions['update']);
+        unset($actions['index'], $actions['update']);
 
         return $actions;
     }
