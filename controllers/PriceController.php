@@ -45,4 +45,17 @@ class PriceController extends CController
         $AzsPrice = AzsPrice::find()->where(['id_module' => $id_module]);
         return new ActiveDataProvider(['query' => $AzsPrice]);
     }
+
+    public function actionDelete($id)
+    {
+        $terminal = Yii::$app->user->identity->terminal;
+        $price = AzsPrice::findOne($id);
+
+        if ($terminal->id_fuel_module != $price->id_module)
+            return ['status' => 1401];
+
+        $price->delete();
+
+        return ['status' => 200];
+    }
 }
