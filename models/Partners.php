@@ -111,7 +111,7 @@ class Partners extends \yii\db\ActiveRecord
         return $sum;
     }
 
-    public function getBalancePost()
+    public function getBalanceSum()
     {
         return $this->sumInpayments - $this->sumTransactions;
     }
