@@ -122,7 +122,7 @@ class Cards extends \yii\db\ActiveRecord
 
         $partner = $this->partner;
 
-        $sum_volume = ($partner->balance + $partner->limit)/$price;
+        $sum_volume = ($partner->balancePost + $partner->limit)/$price;
 
         if ($this->typeLimit)
         {

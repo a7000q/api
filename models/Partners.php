@@ -4,6 +4,7 @@ namespace app\models;
 
 use Yii;
 use app\models\PricesDiscounts;
+use app\models\transaction\Transactions;
 
 /**
  * This is the model class for table "partners".
@@ -97,4 +98,22 @@ class Partners extends \yii\db\ActiveRecord
     {
         return $this->hasOne(PricesDiscounts::className(), ['id_partner' => 'id']);
     }
+
+    public function getSumInpayments()
+    {
+        return Inpayment::find()->where(['id_partner' => $this->id])->sum('sum');
+    }
+
+    public function getSumTransactions()
+    {
+        $sum = Transactions::find()->joinWith('partnerTransaction')->joinWith('productTransaction')->where(['r_partner_transactions.id_partner' => $this->id])->sum('r_product_transactions.price*volume');
+
+        return $sum;
+    }
+
+    public function getBalancePost()
+    {
+        return $this->sumInpayments - $this->sumTransactions;
+    }
+
 }
