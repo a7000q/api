@@ -81,7 +81,8 @@ class Cards extends \yii\db\ActiveRecord
                 'id',
                 'typeProduct',
                 'price',
-                'id_product'
+                'id_product',
+                'productShortName'
             ]
         ]);
 

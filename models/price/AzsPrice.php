@@ -100,6 +100,11 @@ class AzsPrice extends \yii\db\ActiveRecord
         return $this->productLink->name;
     }
 
+    public function getProductShortName()
+    {
+        return $this->productLink->short_name;
+    }
+
     public function getTypeProductLink()
     {
         return $this->hasOne(TypeProducts::className(), ['id' => 'id_type']);
